@@ -4,11 +4,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document
+@Document(collection="user")
 public class User {
 
-	@Id
-	private int id;
+	
 	
 	@Field
 	private String firstName;
@@ -33,18 +32,6 @@ public class User {
 		this.lastName = lastName;
 		this.age = age;
 		this.status = status;
-	}
-
-
-
-	public int getId() {
-		return id;
-	}
-
-
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 
@@ -99,7 +86,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", status="
+		return "User [firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", status="
 				+ status + "]";
 	}
 	
