@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,19 +27,26 @@ public class MainController {
 		return "register_form";
 	}
 
-	@GetMapping("/register/{email}")
-	public User getUser(String email) {
-		User user = userRepositories.findByEmail(email);
-		return user;
-	}
-
+	/*
+	 * @GetMapping("register/getUser") public User getUser(@RequestParam(name =
+	 * "email") String email) { return
+	 * userRepositories.findByEmail(email).orElseThrow(() -> new
+	 * UserNotFoundException("User dons't exist")); }
+	 */
 	@PostMapping("register")
-	public String addUser(@Valid @ModelAttribute("user") @RequestBody User user, BindingResult result) {
+	public String addUser(@Valid @ModelAttribute("user") @RequestBody User user, BindingResult result, ModelMap model) {
 
-		userRepositories.deleteAll();
+		// userRepositories.deleteAll();
+
+		User userExists = userRepositories.findByEmail(user.getEmail());
+
+		if (userExists != null) {
+			result.rejectValue("email", "error.user", "There is already a user registered with the email provided");
+		}
 		if (!result.hasErrors()) {
 			userRepositories.save(user);
-			return "register_success";
+			model.addAttribute("successMessage", "User has been registered successfully");
+
 		}
 		return "register_form";
 

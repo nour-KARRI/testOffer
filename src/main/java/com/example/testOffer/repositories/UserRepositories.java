@@ -7,5 +7,6 @@ import com.example.testOffer.User;
 
 @Repository
 public interface UserRepositories extends MongoRepository<User, String> {
+
 	User findByEmail(String email);
 }

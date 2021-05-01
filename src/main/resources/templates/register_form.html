@@ -21,6 +21,11 @@
  	margin-left:150px;
   
 }
+.btn2{
+	background-color: #4CAF50; 
+	color: white;
+	  
+}
 form{
 display: table;
 }
@@ -34,6 +39,12 @@ display:table-cell;
 span{
 	color:red;
 	
+}
+.successMSG{
+color: green;
+}
+.userDetails{
+color:black;
 }
    
    </style>
@@ -49,23 +60,23 @@ span{
 	                <input type="text" th:field="*{name}" />
 	                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</span>
 				</div>
-				<br><br>
+				<br>
 				<div> <label for="inputUsername" class="sr-only">Email</label>
                 <input type="email"  class="form-control" th:field="*{email}"   />
                 <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name error</span></div>
   			   
                 
-               <br><br>
+               <br>
                <div><label for="inputFullname" class="sr-only">Age</label>
                 <input type="text" class="form-control"  th:field="*{age}"   />
                 <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name error</span></div>
                 
-				<br><br>
+				<br>
 				<div><label for="inputlastName" class="sr-only">Country</label>
                 <input type="text"  class="form-control"  th:field="*{country}"    />
                 <span th:if="${#fields.hasErrors('country')}" th:errors="*{country}">Name error</span></div>
 				
-				<br><br>
+				<br>
 				<div><label for="inputlastName" class="sr-only">Profession</label>
                 <input type="text" class="form-control"  th:field="*{profession}"    />
                 <span th:if="${#fields.hasErrors('profession')}" th:errors="*{profession}">Name error</span></div>
@@ -73,6 +84,20 @@ span{
 			
                 <button class="btn" type="submit">Register</button>
 			</form>
+			<br>
+			<h2><span th:text="${successMessage}" class="successMSG"></span></h2>
+		
+			
+			<br>
+			<h1>Registered User details </h1>
+			
+			
+			<span th:text="${user.name}" class="userDetails"></span><br>
+			<span th:text="${user.email}" class="userDetails"></span><br>
+			<span th:text="${user.age}" class="userDetails"></span><br>
+			<span th:text="${user.country}" class="userDetails"></span><br>
+			<span th:text="${user.profession}" class="userDetails"></span>
+		
 		</div>
 </body>
 </html>
