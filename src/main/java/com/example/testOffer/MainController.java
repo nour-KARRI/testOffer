@@ -27,18 +27,14 @@ public class MainController {
 		return "register_form";
 	}
 
-	/*
-	 * @GetMapping("register/getUser") public User getUser(@RequestParam(name =
-	 * "email") String email) { return
-	 * userRepositories.findByEmail(email).orElseThrow(() -> new
-	 * UserNotFoundException("User dons't exist")); }
-	 */
 	@PostMapping("register")
 	public String addUser(@Valid @ModelAttribute("user") @RequestBody User user, BindingResult result, ModelMap model) {
 
 		// userRepositories.deleteAll();
 
 		User userExists = userRepositories.findByEmail(user.getEmail());
+
+		System.out.println("Get user from DB: " + userExists);
 
 		if (userExists != null) {
 			result.rejectValue("email", "error.user", "There is already a user registered with the email provided");
