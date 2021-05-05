@@ -1,4 +1,4 @@
-package com.example.testOffer;
+package com.example.testOffer.model;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
@@ -8,6 +8,13 @@ import javax.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 @Document(collection = "users")
 public class User {
 
@@ -37,52 +44,6 @@ public class User {
 		this.age = age;
 		this.country = country;
 		this.profession = profession;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getProfession() {
-		return profession;
-	}
-
-	public void setProfession(String profession) {
-		this.profession = profession;
-	}
-
-	@Override
-	public String toString() {
-		return "User [name=" + name + ", email=" + email + ", age=" + age + ", country=" + country + ", profession="
-				+ profession + "]";
 	}
 
 }

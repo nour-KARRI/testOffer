@@ -1,4 +1,4 @@
-package com.example.testOffer;
+package com.example.testOffer.controller;
 
 import javax.validation.Valid;
 
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.example.testOffer.model.User;
 import com.example.testOffer.repositories.UserRepositories;
 
 @Controller
@@ -30,11 +31,9 @@ public class MainController {
 	@PostMapping("register")
 	public String addUser(@Valid @ModelAttribute("user") @RequestBody User user, BindingResult result, ModelMap model) {
 
-		// userRepositories.deleteAll();
+		userRepositories.deleteAll();
 
 		User userExists = userRepositories.findByEmail(user.getEmail());
-
-		System.out.println("Get user from DB: " + userExists);
 
 		if (userExists != null) {
 			result.rejectValue("email", "error.user", "There is already a user registered with the email provided");
