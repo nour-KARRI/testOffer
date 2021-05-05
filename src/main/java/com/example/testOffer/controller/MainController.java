@@ -23,20 +23,20 @@ public class MainController {
 	private UserRepositories userRepositories;
 
 	@GetMapping("/register")
-	public String getRegister(Model model) {
+	public String userForm(Model model) {
 		var user = new User();
 		model.addAttribute("user", user);
 		return "register_form";
 	}
 
-	@PostMapping("register")
+	@PostMapping("/addUser")
 	public String addUser(@Valid @ModelAttribute("user") @RequestBody User user, BindingResult result, ModelMap model,
 			@RequestParam(value = "profession", defaultValue = "defaultValue") String profession) {
 
 		userRepositories.deleteAll();
 
 		user.setProfession(profession);
-		User userExists = userRepositories.findByEmail(user.getEmail());
+		var userExists = userRepositories.findByEmail(user.getEmail());
 
 		if (userExists != null) {
 			result.rejectValue("email", "error.user", "There is already a user registered with the email provided");

@@ -4,56 +4,14 @@
 <meta charset="ISO-8859-1">
 <title>User Registration</title>
    <link rel="stylesheet" href="">
-   <style>
-   .sr-only{
-	display: inline-block;
-  width: 140px;
-  text-align: right;
-  padding-right:20px;
-  font-weight: bold;
-  
-}
-.btn{
-	background-color: #4CAF50; 
-	color: white;
-	padding:5px 10px 5px 10px;
-	font-size: 16px;
- 	margin-left:150px;
-  
-}
-.btn2{
-	background-color: #4CAF50; 
-	color: white;
-	  
-}
-form{
-display: table;
-}
-
-form div{
-diplay: table-row;
-}
-form div div{
-display:table-cell;
-	}
-span{
-	color:red;
-	
-}
-.successMSG{
-color: green;
-}
-.userDetails{
-color:black;
-}
-   
-   </style>
+   <link th:href="@{../css/style.css}" rel="stylesheet" />
+ 
 </head>
 <body>
 		<div align="center">
 			
 			<h1>User Registration</h1>
-			<form action="#" th:action="@{/register}" th:object="${user}" method="post">
+			<form action="#" th:action="@{/addUser}" th:object="${user}" method="post">
 			
 				<div>
 				<label for="inputUsername" class="sr-only">Name</label>
@@ -86,12 +44,8 @@ color:black;
 			</form>
 			<br>
 			<h2><span th:text="${successMessage}" class="successMSG"></span></h2>
-		
-			
 			<br>
 			<h1>Registered User details </h1>
-			
-		 	
 		<span class="userDetails" th:unless="${#fields.hasErrors('user.name')}" >
 					<span th:text="${user.name}" class="userDetails"></span><br>
 					<span th:text="${user.email}" class="userDetails"></span><br>
@@ -100,8 +54,6 @@ color:black;
 					<span th:text="${user.profession}" class="userDetails"></span> 
 		
 		</span><br>
-			
-		
 		</div>
 </body>
 </html>

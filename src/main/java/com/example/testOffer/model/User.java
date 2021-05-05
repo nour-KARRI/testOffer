@@ -31,11 +31,18 @@ public class User {
 
 	@Pattern(regexp = "^France$|^france$", message = "only adults live in France can create an account")
 	private String country;
+
 	private String profession;
 
+	/*
+	 * default constructor
+	 */
 	public User() {
-
 	}
+
+	/*
+	 * constructor
+	 */
 
 	public User(String name, String email, int age, String country, String profession) {
 		super();

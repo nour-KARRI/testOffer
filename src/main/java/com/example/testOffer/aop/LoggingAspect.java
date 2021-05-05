@@ -17,13 +17,13 @@ public class LoggingAspect {
 	// AOP expression for which methods shall be intercepted
 	@Around("execution(* com.example.testOffer.MainController..*(..)))")
 	public Object profileAllMethods(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-		MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
+		var methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
 
 		// Get intercepted method details
 		String className = methodSignature.getDeclaringType().getSimpleName();
 		String methodName = methodSignature.getName();
 
-		final StopWatch stopWatch = new StopWatch();
+		final var stopWatch = new StopWatch();
 
 		// Measure method execution time
 		stopWatch.start();
