@@ -22,7 +22,7 @@ public class MainController {
 	@Autowired
 	private UserRepositories userRepositories;
 
-	@GetMapping("/register")
+	@GetMapping("/addUser")
 	public String userForm(Model model) {
 		var user = new User();
 		model.addAttribute("user", user);
@@ -35,18 +35,45 @@ public class MainController {
 
 		userRepositories.deleteAll();
 
-		user.setProfession(profession);
+		/*
+		 * Find user by email,
+		 */
+
 		var userExists = userRepositories.findByEmail(user.getEmail());
+		/*
+		 * Show error in the email input, if email exist already
+		 */
 
 		if (userExists != null) {
 			result.rejectValue("email", "error.user", "There is already a user registered with the email provided");
 		}
 		if (!result.hasErrors()) {
-			userRepositories.save(user);
-			model.addAttribute("successMessage", "User has been registered successfully");
 
+			/*
+			 * set the value of the not mandatory field, if null
+			 */
+
+			user.setProfession(profession);
+			/*
+			 * Save user
+			 */
+			var userDB = userRepositories.save(user);
+
+			/*
+			 * Return success Message
+			 */
+			model.addAttribute("successMessage", "User has been registered successfully");
+			/*
+			 * Render registered User
+			 */
+			model.addAttribute("userDB", userDB);
+			/*
+			 * Reset all the submission form
+			 */
+			model.addAttribute("user", new User());
 		}
 		return "register_form";
 
 	}
+
 }

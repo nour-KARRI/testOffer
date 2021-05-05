@@ -2,6 +2,7 @@ package com.example.testOffer.model;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -23,6 +24,7 @@ public class User {
 	@Size(min = 3, max = 50)
 	private String name;
 
+	@NotBlank(message = "Email is required")
 	@Email(message = "Please enter a valid e-mail address")
 	private String email;
 

@@ -11,7 +11,7 @@
 		<div align="center">
 			
 			<h1>User Registration</h1>
-			<form action="#" th:action="@{/addUser}" th:object="${user}" method="post">
+			<form id="myForm" action="#" th:action="@{/addUser}" th:object="${user}" method="post">
 			
 				<div>
 				<label for="inputUsername" class="sr-only">Name</label>
@@ -39,21 +39,26 @@
                 <input type="text" class="form-control"  th:field="*{profession}"    />
                 <span th:if="${#fields.hasErrors('profession')}" th:errors="*{profession}">Name error</span></div>
 				<br><br>
-			
+	
                 <button class="btn" type="submit">Register</button>
+            
 			</form>
+	
 			<br>
 			<h2><span th:text="${successMessage}" class="successMSG"></span></h2>
 			<br>
 			<h1>Registered User details </h1>
-		<span class="userDetails" th:unless="${#fields.hasErrors('user.name')}" >
-					<span th:text="${user.name}" class="userDetails"></span><br>
-					<span th:text="${user.email}" class="userDetails"></span><br>
-					<span th:text="${user.age}" class="userDetails"></span><br>
-					<span th:text="${user.country}" class="userDetails"></span><br>
-					<span th:text="${user.profession}" class="userDetails"></span> 
+				
+         <span class="userDetails" th:unless="${#fields.hasErrors('user.name')}" >
+					<span th:text="${userDB.name}" class="userDetails"></span><br>
+					<span th:text="${userDB.email}" class="userDetails"></span><br>
+					<span th:text="${userDB.age}" class="userDetails"></span><br>
+					<span th:text="${userDB.country}" class="userDetails"></span><br>
+					<span th:text="${userDB.profession}" class="userDetails"></span> 
 		
-		</span><br>
+		</span><br> 
 		</div>
+		
+
 </body>
 </html>
