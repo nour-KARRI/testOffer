@@ -29,7 +29,7 @@ public class User {
 	@Min(value = 19, message = "To register, you must be over 18 years old ")
 	private int age;
 
-	@Pattern(regexp = "^France|france", message = "only adults live in France can create an account")
+	@Pattern(regexp = "^France$|^france$", message = "only adults live in France can create an account")
 	private String country;
 	private String profession;
 

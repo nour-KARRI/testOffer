@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.testOffer.model.User;
 import com.example.testOffer.repositories.UserRepositories;
@@ -23,16 +24,18 @@ public class MainController {
 
 	@GetMapping("/register")
 	public String getRegister(Model model) {
-		User user = new User();
+		var user = new User();
 		model.addAttribute("user", user);
 		return "register_form";
 	}
 
 	@PostMapping("register")
-	public String addUser(@Valid @ModelAttribute("user") @RequestBody User user, BindingResult result, ModelMap model) {
+	public String addUser(@Valid @ModelAttribute("user") @RequestBody User user, BindingResult result, ModelMap model,
+			@RequestParam(value = "profession", defaultValue = "defaultValue") String profession) {
 
 		userRepositories.deleteAll();
 
+		user.setProfession(profession);
 		User userExists = userRepositories.findByEmail(user.getEmail());
 
 		if (userExists != null) {
