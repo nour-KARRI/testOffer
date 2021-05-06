@@ -57,16 +57,18 @@ public class MainController {
 			/*
 			 * Save user
 			 */
-			var userDB = userRepositories.save(user);
+			User userDB = userRepositories.save(user);
 
 			/*
 			 * Return success Message
 			 */
 			model.addAttribute("successMessage", "User has been registered successfully");
+
 			/*
 			 * Render registered User
 			 */
-			model.addAttribute("userDB", userDB);
+			model.addAttribute("userdb", userDB);
+
 			/*
 			 * Reset all the submission form
 			 */

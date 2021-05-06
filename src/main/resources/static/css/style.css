@@ -48,4 +48,9 @@ color: green;
 }
 .userDetails{
 color:black;
+display: inline-block;
+  width: 260px;
+  text-align: left;
+  padding-right:20px;
+  font-weight: bold;
 }

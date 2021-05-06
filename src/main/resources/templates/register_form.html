@@ -49,14 +49,17 @@
 			<br>
 			<h1>Registered User details </h1>
 				
-         <span class="userDetails" th:unless="${#fields.hasErrors('user.name')}" >
-					<span th:text="${userDB.name}" class="userDetails"></span><br>
-					<span th:text="${userDB.email}" class="userDetails"></span><br>
-					<span th:text="${userDB.age}" class="userDetails"></span><br>
-					<span th:text="${userDB.country}" class="userDetails"></span><br>
-					<span th:text="${userDB.profession}" class="userDetails"></span> 
-		
-		</span><br> 
+			
+				
+			 	<tr th:each="userDB: ${userdb}">
+				<span class="userDetails">
+					Name: <td th:text="${userDB.name}" /><br>
+				    Email: <td th:text="${userDB.email}" class="userDetails"/><br>
+				    Age: <td th:text="${userDB.age}" class="userDetails"/><br>
+				    Country: <td th:text="${userDB.country}" class="userDetails"/><br>
+				    Profession: <td th:text="${userDB.profession}" class="userDetails"/><br></span>
+				</tr>
+       
 		</div>
 		
 
